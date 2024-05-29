@@ -12,6 +12,22 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
     /**
+     * Update the user's theme settings.
+     */
+    public function updateTheme(Request $request): RedirectResponse
+    {
+        $user = $request->user();
+        if($user->theme == 'light') {
+            $user->theme = 'dark';
+        }
+        else {
+            $user->theme = 'light';
+        }
+        $user->save();
+        return redirect()->route('profile.edit')->with('status', 'theme-updated');
+    }
+
+    /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
