@@ -8,6 +8,10 @@ use App\Models\PostImage;
 
 class PostController extends Controller
 {
+    public function loadPosts() {
+        $posts = Post::with('user', 'images')->get();
+        return view('home', compact('posts'));
+    }
     public function storePost(Request $request)
     {
         $request->validate([

@@ -6,9 +6,11 @@
                 <br>
                 {{ $text }}
                 <br>
-                @foreach ()
-
-                @endforeach
+                @if($images->isNotEmpty())
+                    @foreach ($images as $image)
+                        {{ $image }}
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

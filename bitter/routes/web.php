@@ -1,15 +1,12 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return redirect('/home');
-})->middleware(['auth', 'verified'])->name('home');
 
-Route::get('/home', function () {
-    return view('home');
-})->middleware(['auth', 'verified'])->name('home');
+Route::get('/home', [PostController::class, 'loadPosts'])->middleware(['auth', 'verified'])->name('home');
+Route::get('/', [PostController::class, 'loadPosts'])->middleware(['auth', 'verified'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::put('/profile', [ProfileController::class, 'updateTheme'])->name('profile.updateTheme');
