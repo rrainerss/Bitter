@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Postimage extends Model
 {
+    protected $table = 'post_images';
     protected $fillable = [
         'image', 
         'post_id'
