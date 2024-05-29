@@ -15,7 +15,10 @@ class PostController extends Controller
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096'
         ]);
 
-        $post = Post::create($request->only('text'));
+        $post = Post::create([
+            'text' => $request->text,
+            'user_id' => auth()->id()
+        ]);
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {

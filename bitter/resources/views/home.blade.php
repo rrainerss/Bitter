@@ -15,6 +15,13 @@
         </div>
     </div>
 
-    <x-post-section>
-    </x-post-section>
+    @if($posts->isEmpty())
+        <x-no-posts-section>
+        </x-no-posts-section>
+    @else
+        @foreach ($posts as $post)
+            <x-post-section :text="$post->text" :username="$post->user->name" :images="$post->images">
+            </x-post-section>
+        @endforeach
+    @endif
 </x-app-layout>
